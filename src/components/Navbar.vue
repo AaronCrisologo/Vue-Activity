@@ -28,7 +28,7 @@ onUnmounted(() => {
   >
     <div class="container">
       <a class="navbar-brand fw-bold brand-logo" href="#landing">
-        <img src="/images/1x1 photo.jpg" alt="Aaron Crisologo logo" class="brand-logo-img" /> AARON CRISOLOGO
+        <img src="/images/1x1-photo.jpg" alt="Aaron Crisologo logo" class="brand-logo-img" /> AARON CRISOLOGO
       </a>
       <button
         class="navbar-toggler"

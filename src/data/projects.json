@@ -12,7 +12,7 @@
     "title": "Course Booking API Documentation",
     "tag": "API Documentation",
     "description": "RESTful API for managing course enrollments, featuring user registration, authentication, and retrieval of user details. Supports course creation, updates, archiving, activation, and student enrollment. Publicly documented using Postman.",
-    "image": "/images/course booking.jpg",
+    "image": "/images/course-booking.jpg",
     "tech": ["Node.js", "Express", "JWT"]
   },
   {
@@ -20,7 +20,7 @@
     "title": "Course Booking App",
     "tag": "Full Stack App",
     "description": "A MERN-stack course enrollment system featuring user registration, authentication, and profile management. Authenticated users can create, update, archive, and activate courses. The platform also allows users to browse available courses and enroll seamlessly.",
-    "image": "/images/course booking app.jpg",
+    "image": "/images/course-booking-app.jpg",
     "tech": ["React", "Bootstrap 5", "MongoDB"]
   },
   {
@@ -28,7 +28,7 @@
     "title": "E-commerce App",
     "tag": "Full Stack App",
     "description": "MERN E-Commerce Platform. The platform features dynamic product catalog with filtering and sorting, real-time search, seamless cart updates, secure checkout, and a comprehensive admin dashboard with real-time analytics and user management capabilities.",
-    "image": "/images/e-commerce app.webp",
+    "image": "/images/e-commerce-app.webp",
     "tech": ["JavaScript", "Bootstrap 5", "API"]
   },
   {
@@ -44,7 +44,7 @@
     "title": "Airline Booking System Prototype",
     "tag": "Prototype",
     "description": "Side Project: Interactive prototype simulating end-to-end airline booking functionalities, including flight search, reservation, payment processing, and real-time ticket management.",
-    "image": "/images/airline app.jpg",
+    "image": "/images/airline-app.jpg",
     "tech": ["Figma", "Prototyping"]
   },
   {

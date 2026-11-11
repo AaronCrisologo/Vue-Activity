@@ -32,7 +32,7 @@
         </div>
         <div class="col-lg-5 order-1 order-lg-2">
           <div class="profile-card text-center">
-            <img src="/images/1x1 photo.jpg" alt="Aaron Crisologo profile photo" class="profile-img" />
+            <img src="/images/1x1-photo.jpg" alt="Aaron Crisologo profile photo" class="profile-img" />
             <h3 class="mt-3 mb-0">Aaron Crisologo</h3>
             <p class="text-muted">Full Stack Web Developer</p>
             <div class="d-flex gap-2 justify-content-center mt-3">
