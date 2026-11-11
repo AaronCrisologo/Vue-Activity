@@ -1,9 +1,9 @@
 <script setup>
-  import {ref} from "vue";
+  import { ref, onMounted, onBeforeUnmount } from "vue";
 
   import axios from "axios";
 
-  import {Notyf} from "notyf";
+  import { Notyf } from "notyf";
   import 'notyf/notyf.min.css';
 
   const notyf = new Notyf();
@@ -12,6 +12,8 @@
 
   const emailSubject = "New message from Portfolio Contact Form";
 
+  const SITE_KEY = "6LcFkBouAAAAAETGVrVHG-CeQxHcySbclvsEnDwQ";
+
   const name = ref("");
   const email = ref("");
   const subject = ref("");
@@ -19,8 +21,60 @@
 
   const isLoading = ref(false);
 
+  const recaptchaContainer = ref(null);
+  const recaptchaWidgetId = ref(null);
+  const recaptchaToken = ref("");
+
+  const onRecaptchaSuccess = (token) => {
+    recaptchaToken.value = token;
+  };
+
+  const onRecaptchaExpired = () => {
+    recaptchaToken.value = "";
+  };
+
+  const renderRecaptcha = () => {
+    if (!window.grecaptcha) {
+      console.error("reCAPTCHA not loaded");
+      return;
+    }
+
+    recaptchaWidgetId.value = window.grecaptcha.render(recaptchaContainer.value, {
+      sitekey: SITE_KEY,
+      size: "normal",
+      callback: onRecaptchaSuccess,
+      "expired-callback": onRecaptchaExpired,
+    });
+  };
+
+  const resetRecaptcha = () => {
+    if (recaptchaWidgetId.value !== null) {
+      window.grecaptcha.reset(recaptchaWidgetId.value);
+      recaptchaToken.value = "";
+    }
+  };
+
+  onMounted(() => {
+    const interval = setInterval(() => {
+      if (window.grecaptcha && window.grecaptcha.render) {
+        renderRecaptcha();
+        clearInterval(interval);
+      }
+    }, 100);
+
+    onBeforeUnmount(() => {
+      clearInterval(interval);
+    });
+  });
+
   const sendForms = async (e) => {
     e.preventDefault();
+
+    if (!recaptchaToken.value) {
+      notyf.error("Please verify that you are not a robot.");
+      return;
+    }
+
     isLoading.value = true;
 
     try {
@@ -43,6 +97,7 @@
         email.value = "";
         subject.value = "";
         message.value = "";
+        resetRecaptcha();
       } else {
         notyf.error("Failed to send message. Please try again.");
       }
@@ -52,8 +107,6 @@
       isLoading.value = false;
     }
   };
-
-  //
 
 </script>
 
@@ -88,6 +141,7 @@
                 <label for="message" class="form-label">Project Details / Message</label>
                 <textarea v-model="message" class="form-control" id="message" name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
               </div>
+              <div class="mb-3" ref="recaptchaContainer"></div>
               <button type="submit" class="btn btn-primary-custom w-100" :disabled="isLoading">{{ isLoading ? "Sending..." : "Send Message" }}</button>
             </form>
           </div>
